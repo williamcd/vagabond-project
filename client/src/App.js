@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { injectGlobal } from "styled-components";
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./components/static-components/Header";
+import Footer from "./components/static-components/Footer";
 
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
