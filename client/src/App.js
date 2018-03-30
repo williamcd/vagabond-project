@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
+import NewCityForm from './components/cities/NewCityForm'
 
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
@@ -37,7 +38,7 @@ class App extends Component {
     }
   }
 
-  toggleNewCityForm() {
+  toggleNewCityForm = () => {
     this.setState({ newCityFormOpen: !this.state.newCityFormOpen })
   }
 
@@ -71,6 +72,8 @@ class App extends Component {
           <img src="https://i.imgur.com/6X26EdW.jpg" />
           <h1>San Francisco</h1>
           <img src="https://i.imgur.com/6YH983R.jpg" />
+          <button onClick={this.toggleNewCityForm}>New City</button>
+          { this.state.newCityFormOpen ? <NewCityForm /> : null }
         </PageWrapper>
         <Footer />
       </div>
