@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import styled from 'styled-components'
+import { injectGlobal } from "styled-components";
+
 import Header from './Header'
+
+injectGlobal`
+@import url('https://fonts.googleapis.com/css?family=Sarina');
+`
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>Vagabond</h1>
+        <Header />
       </div>
     );
   }
