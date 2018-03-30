@@ -7,8 +7,10 @@ class Api::CitiesController < ApplicationController
     end
     def show
         @city = City.find(params[:id])
+        @comments = @city.comments
         render json: {
-            city: @city
+            city: @city,
+            comments: @comments
         }
     end
     def update
