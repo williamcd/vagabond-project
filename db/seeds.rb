@@ -1,7 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+City.destroy_all
+
+atlanta = City.create!({
+    name: "Atlanta",
+    photo_url: "http://tradeshowsupply.com/wp-content/uploads/2016/12/FTGBlog-Luckie-Marietta-SkyViewAtlanta-CreditSKYVIEW%EF%BF%BD-ATLANTA.jpg",
+    description: "Atlanta is the capital of the U.S. state of Georgia. It played an important part in both the Civil War and the 1960s Civil Rights Movement. Atlanta History Center chronicles the city's past, and the Martin Luther King Jr. National Historic Site is dedicated to the African-American leader’s life and times. Downtown, Centennial Olympic Park, built for the 1996 Olympics, encompasses the massive Georgia Aquarium."
+})
