@@ -31,6 +31,7 @@ class App extends Component {
     try {
       const res = await axios.get('/api/cities')
       this.setState({ cities: res.data.cities })
+      console.log(this.state)
     } catch (err) {
       this.setState({ err: err.message })
     }
