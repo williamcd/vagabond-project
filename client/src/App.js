@@ -16,9 +16,9 @@ class App extends Component {
     cities: [],
     newCityFormOpen: false,
     newCity: {
-      name: '',
-      description: '',
-      photo_url: ''
+      name: 'Atlanta',
+      description: "Don't go there, it sucks!",
+      photo_url: 'https://i.imgur.com/42zYDsw.jpg'
     },
     error: ''
   }
@@ -109,3 +109,4 @@ const PageWrapper = styled.div`
 `;
 
 export default App;
+
