@@ -20,13 +20,14 @@ const HeaderStyles = styled.div`
   width: 100%;
   padding: 8px;
   background: black;
-  color: white;
+  color: #f2b90c;
   text-align: center;
-  font-size: 24px;
   text-shadow: 1px 2px lightgrey;
 
   h1 {
     font-family: "Sarina", cursive;
-    font-size: 62px;
+    font-size: 52px;
+    text-shadow: 1px 2px white;
+    text-decoration: underline;
   }
 `;
