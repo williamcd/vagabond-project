@@ -5,7 +5,8 @@ import axios from 'axios';
 
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
-import NewCityForm from './components/cities/NewCityForm'
+import NewCityForm from './components/cities/NewCityForm';
+import CityList from './components/cities/CityList';
 
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
@@ -17,9 +18,9 @@ class App extends Component {
     cities: [],
     newCityFormOpen: false,
     newCity: {
-      name: 'Atlanta',
-      description: "Don't go there, it sucks!",
-      photo_url: 'https://i.imgur.com/42zYDsw.jpg'
+      name: '',
+      description: '',
+      photo_url: ''
     },
     error: ''
   }
@@ -66,12 +67,11 @@ class App extends Component {
       <div>
         <Header />
         <PageWrapper>
-          <h1>Atlanta</h1>
-          <img src="https://i.imgur.com/42zYDsw.jpg" />
-          <h1>London</h1>
-          <img src="https://i.imgur.com/6X26EdW.jpg" />
-          <h1>San Francisco</h1>
-          <img src="https://i.imgur.com/6YH983R.jpg" />
+          {this.state.cities.map((city, i) => {
+            return (
+              <CityList key={i } cityName={city.name} cityPhoto={city.photo_url} />
+            )
+          })}
           <button onClick={this.toggleNewCityForm}>New City</button>
           { this.state.newCityFormOpen ? <NewCityForm /> : null }
         </PageWrapper>
