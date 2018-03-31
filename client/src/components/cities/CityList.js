@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { injectGlobal } from "styled-components";
 
 class CityList extends Component {
     render() {
         return (
             <PageWrapper>
+                <img src={this.props.cityPhoto} alt={this.props.cityName} />
                 <h1>{this.props.cityName}</h1>
-                <img src={this.props.cityPhoto} />
             </PageWrapper>
         );
     }
@@ -40,7 +39,7 @@ const PageWrapper = styled.div`
     color: white;
     font-size: 28px; 
     text-shadow: 1px 2px black;
-    margin: 28px 0px;
+    margin-bottom: 20px;
   }
 `;
 
