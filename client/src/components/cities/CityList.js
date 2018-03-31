@@ -13,7 +13,7 @@ class CityList extends Component {
 }
 
 const PageWrapper = styled.div`
-  min-height: 100vh;
+  /* min-height: 100vh; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ const PageWrapper = styled.div`
   align-items: center;
 
   img {
-    width: 60%;
+    width: 70%;
     margin: 15px;
     border-radius: 15px;
     padding: 15px;
@@ -39,7 +39,7 @@ const PageWrapper = styled.div`
     color: white;
     font-size: 28px; 
     text-shadow: 1px 2px black;
-    margin-bottom: 20px;
+    padding-bottom: 50px;
   }
 `;
 
