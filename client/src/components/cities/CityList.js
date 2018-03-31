@@ -6,7 +6,7 @@ class CityList extends Component {
     render() {
         return (
             <PageWrapper>
-                <h1>{this.props.cityName}</h1>
+                <h1><a href={this.props.cityId}>{this.props.cityName}</a></h1>
                 <img src={this.props.cityPhoto} />
             </PageWrapper>
         );
@@ -14,7 +14,7 @@ class CityList extends Component {
 }
 
 const PageWrapper = styled.div`
-  min-height: 100vh;
+  min-height: 50vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

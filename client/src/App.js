@@ -45,14 +45,15 @@ class App extends Component {
 
   handleChange = (event) => {
     const newCity = { ...this.state.newCity }
-    const att = event.target.name
-    newCity[att] = event.target.value
+    newCity[event.target.name] = event.target.value
+    this.setState({ newCity })
   }
 
   createNewCity = async (event) => {
     event.preventDefault()
     const response = await axios.post('/api/cities', this.state.newCity)
-    const cities = [...this.state.cities, response.data]
+    // const cities = [...this.state.cities, response.data]
+    this.getAllCities()
     this.setState({
       newCity: {
         name: '',
@@ -60,6 +61,7 @@ class App extends Component {
         photo_url: ''
       },
     })
+    this.getAllCities()
   }
 
   render() {
@@ -68,11 +70,13 @@ class App extends Component {
         <Header />
         {this.state.cities.map((city, i) => {
           return (
-            <CityList key={i} cityName={city.name} cityPhoto={city.photo_url} />
+            <CityList key={i} cityId={city.id}cityName={city.name} cityPhoto={city.photo_url} />
           )
         })}
+        <PageWrapper>
         <button onClick={this.toggleNewCityForm}>New City</button>
-        {this.state.newCityFormOpen ? <NewCityForm /> : null}
+        {this.state.newCityFormOpen ? <NewCityForm newCity={this.state.newCity} handleChange={this.handleChange} createNewCity={this.createNewCity} /> : null}
+        </PageWrapper>
         <Footer />
       </div>
     );
@@ -80,7 +84,6 @@ class App extends Component {
 }
 
 const PageWrapper = styled.div`
-  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
