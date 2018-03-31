@@ -10,7 +10,7 @@ class NewCityForm extends Component {
                 <br />
                 <input onChange={this.props.handleChange} placeholder="photo_url" type="text" name="photo_url" value={this.props.newCity.photo_url} />
                 <br />
-                <button>Save City</button>
+                <button>Save</button>
             </form>
         );
     }
