@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { injectGlobal } from "styled-components";
-import axios from 'axios';
+import axios from "axios";
+
 
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
-import NewCityForm from './components/cities/NewCityForm';
-import CityList from './components/cities/CityList';
+import NewCityForm from "./components/cities/NewCityForm";
+import CityList from "./components/cities/CityList";
 
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
@@ -18,12 +19,12 @@ class App extends Component {
     cities: [],
     newCityFormOpen: false,
     newCity: {
-      name: '',
-      description: '',
-      photo_url: ''
+      name: "",
+      description: "",
+      photo_url: ""
     },
-    error: ''
-  }
+    error: ""
+  };
 
   componentDidMount() {
     this.getAllCities();
@@ -31,17 +32,17 @@ class App extends Component {
 
   getAllCities = async () => {
     try {
-      const res = await axios.get('/api/cities')
-      this.setState({ cities: res.data.cities })
-      console.log(this.state)
+      const res = await axios.get("/api/cities");
+      this.setState({ cities: res.data.cities });
+      console.log(this.state);
     } catch (err) {
-      this.setState({ err: err.message })
+      this.setState({ err: err.message });
     }
-  }
+  };
 
   toggleNewCityForm = () => {
-    this.setState({ newCityFormOpen: !this.state.newCityFormOpen })
-  }
+    this.setState({ newCityFormOpen: !this.state.newCityFormOpen });
+  };
 
   handleChange = (event) => {
     const newCity = { ...this.state.newCity }
@@ -74,7 +75,7 @@ class App extends Component {
           )
         })}
         <PageWrapper>
-        <button onClick={this.toggleNewCityForm}>New City</button>
+        <button onClick={this.toggleNewCityForm}>Create a city</button>
         {this.state.newCityFormOpen ? <NewCityForm newCity={this.state.newCity} handleChange={this.handleChange} createNewCity={this.createNewCity} /> : null}
         </PageWrapper>
         <Footer />
@@ -114,4 +115,3 @@ const PageWrapper = styled.div`
 `;
 
 export default App;
-

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { injectGlobal } from "styled-components";
 
 class CityList extends Component {
     render() {
         return (
             <PageWrapper>
-                <h1><a href={this.props.cityId}>{this.props.cityName}</a></h1>
-                <img src={this.props.cityPhoto} />
+                <img src={this.props.cityPhoto} alt={this.props.cityName} />
+                <h1>{this.props.cityName}</h1>
             </PageWrapper>
         );
     }
 }
 
 const PageWrapper = styled.div`
-  min-height: 50vh;
+  /* min-height: 100vh; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -27,7 +26,7 @@ const PageWrapper = styled.div`
   align-items: center;
 
   img {
-    width: 60%;
+    width: 70%;
     margin: 15px;
     border-radius: 15px;
     padding: 15px;
@@ -40,7 +39,7 @@ const PageWrapper = styled.div`
     color: white;
     font-size: 28px; 
     text-shadow: 1px 2px black;
-    margin: 28px 0px;
+    padding-bottom: 50px;
   }
 `;
 
