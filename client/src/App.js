@@ -44,9 +44,9 @@ class App extends Component {
   }
 
   handleChange = (event) => {
-    const newCity = {...this.state.newCity}
+    const newCity = { ...this.state.newCity }
     const att = event.target.name
-    newCity [ att ] = event.target.value
+    newCity[att] = event.target.value
   }
 
   createNewCity = async (event) => {
@@ -66,15 +66,13 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <PageWrapper>
-          {this.state.cities.map((city, i) => {
-            return (
-              <CityList key={i } cityName={city.name} cityPhoto={city.photo_url} />
-            )
-          })}
-          <button onClick={this.toggleNewCityForm}>New City</button>
-          { this.state.newCityFormOpen ? <NewCityForm /> : null }
-        </PageWrapper>
+        {this.state.cities.map((city, i) => {
+          return (
+            <CityList key={i} cityName={city.name} cityPhoto={city.photo_url} />
+          )
+        })}
+        <button onClick={this.toggleNewCityForm}>New City</button>
+        {this.state.newCityFormOpen ? <NewCityForm /> : null}
         <Footer />
       </div>
     );
