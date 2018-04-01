@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
+// import { Container, Modal, Button, Card, Image } from 'semantic-ui-react'
 
 class CityList extends Component {
     render() {
