@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { injectGlobal } from "styled-components";
 import axios from "axios";
 
-
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
 import NewCityForm from "./components/cities/NewCityForm";
