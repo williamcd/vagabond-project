@@ -1,15 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import styled from "styled-components";
+import axios from 'axios'
 
 class CityList extends Component {
-    render() {
-        return (
-            <PageWrapper>
-                <img src={this.props.cityPhoto} alt={this.props.cityName} />
-                <h1>{this.props.cityName}</h1>
-            </PageWrapper>
-        );
+    state = {
+        city: {}
     }
+
+  deleteCity = async event => {
+    const singleCityId = this.props.match.params.id;
+    await axios.delete(`/api/cities/${singleCityId}`);
+    console.log(this.props.match.params.id)
+    this.history.push("/");
+  };
+
+  render() {
+    return (
+      <PageWrapper>
+        <img src={this.props.cityPhoto} alt={this.props.cityName} />
+        <h1>{this.props.cityName}</h1>
+        <button negative onClick={this.deleteCity}>
+          Delete {this.props.cityName}
+        </button>
+      </PageWrapper>
+    );
+  }
 }
 
 const PageWrapper = styled.div`
@@ -35,9 +50,9 @@ const PageWrapper = styled.div`
   }
 
   h1 {
-    font-family: 'Diplomata SC', cursive;
+    font-family: "Diplomata SC", cursive;
     color: white;
-    font-size: 28px; 
+    font-size: 28px;
     text-shadow: 1px 2px black;
     padding-bottom: 50px;
   }

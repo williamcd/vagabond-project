@@ -11,6 +11,20 @@ import CityList from "./components/cities/CityList";
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
 @import url('https://fonts.googleapis.com/css?family=Diplomata+SC');
+
+button {
+  padding: 10px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: Black;
+    color: white;
+}
 `;
 
 class App extends Component {
@@ -39,30 +53,35 @@ class App extends Component {
     }
   };
 
+  toggleShowForm = () => {
+    this.setState({ createNewCity: !this.state.createNewCity });
+  };
+
   toggleNewCityForm = () => {
     this.setState({ newCityFormOpen: !this.state.newCityFormOpen });
   };
 
-  handleChange = (event) => {
-    const newCity = { ...this.state.newCity }
-    newCity[event.target.name] = event.target.value
-    this.setState({ newCity })
-  }
+  handleChange = event => {
+    const newCity = { ...this.state.newCity };
+    newCity[event.target.name] = event.target.value;
+    this.setState({ newCity });
+  };
 
-  createNewCity = async (event) => {
-    event.preventDefault()
-    const response = await axios.post('/api/cities', this.state.newCity)
+  createNewCity = async event => {
+    event.preventDefault();
+    const response = await axios.post("/api/cities", this.state.newCity);
     // const cities = [...this.state.cities, response.data]
-    this.getAllCities()
+    this.getAllCities();
     this.setState({
       newCity: {
-        name: '',
-        description: '',
-        photo_url: ''
-      },
-    })
-    this.getAllCities()
-  }
+        name: "",
+        description: "",
+        photo_url: ""
+      }
+    });
+    this.getAllCities();
+    this.toggleNewCityForm();
+  };
 
   render() {
     return (
@@ -70,12 +89,23 @@ class App extends Component {
         <Header />
         {this.state.cities.map((city, i) => {
           return (
-            <CityList key={i} cityId={city.id}cityName={city.name} cityPhoto={city.photo_url} />
-          )
+            <CityList
+              key={i}
+              cityId={city.id}
+              cityName={city.name}
+              cityPhoto={city.photo_url}
+            />
+          );
         })}
         <PageWrapper>
-        <button onClick={this.toggleNewCityForm}>Create a city</button>
-        {this.state.newCityFormOpen ? <NewCityForm newCity={this.state.newCity} handleChange={this.handleChange} createNewCity={this.createNewCity} /> : null}
+          <button onClick={this.toggleNewCityForm}>Create a city</button>
+          {this.state.newCityFormOpen ? (
+            <NewCityForm
+              newCity={this.state.newCity}
+              handleChange={this.handleChange}
+              createNewCity={this.createNewCity}
+            />
+          ) : null}
         </PageWrapper>
         <Footer />
       </div>
@@ -105,9 +135,9 @@ const PageWrapper = styled.div`
   }
 
   h1 {
-    font-family: 'Diplomata SC', cursive;
+    font-family: "Diplomata SC", cursive;
     color: white;
-    font-size: 28px; 
+    font-size: 28px;
     text-shadow: 1px 2px black;
     margin: 28px 0px;
   }

@@ -6,12 +6,17 @@ class NewCityForm extends Component {
     return (
       <FormStyle>
         <header>New City</header>
-        <form id="form" className="topBefore" onSubmit={this.props.createNewCity}>
+        <form
+          id="form"
+          className="topBefore"
+          onSubmit={this.props.createNewCity}
+        >
           <input
             onChange={this.props.handleChange}
             id="name"
             type="text"
             placeholder="Name"
+            name="name"
             value={this.props.newCity.name}
           />
           <input
@@ -19,14 +24,16 @@ class NewCityForm extends Component {
             id="photo_url"
             type="text"
             placeholder="Photo URL"
-            value={this.props.newCity.description}
+            name="photo_url"
+            value={this.props.newCity.photo_url}
           />
           <textarea
             onChange={this.props.handleChange}
             id="message"
             type="text"
             placeholder="Description"
-            value={this.props.newCity.photo_url}
+            name="description"
+            value={this.props.newCity.description}
           />
           <input id="submit" type="submit" value="Add City" />
         </form>
