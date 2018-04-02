@@ -8,16 +8,16 @@ import NewCommentForm from '../comments/NewCommentForm';
 import CommentList from '../comments/CommentList';
 
 class SingleCityView extends Component {
-  state = {
-    city: {},
-    comments: [],
-    showEditCity: false,
-    showCreateCommentForm: false,
-    newComment: {
-      title: "",
-      content: ""
-    }
-  };
+    state = {
+        city: {},
+        comments: [],
+        showEditCity: false,
+        showCreateCommentForm: false,
+        newComment: {
+            title: "",
+            content: ""
+        }
+    };
 
     componentDidMount() {
         this.getSingleCity()
@@ -29,60 +29,46 @@ class SingleCityView extends Component {
             city: response.data.city,
             comments: response.data.comments
         })
+        console.log(this.state.comments)
     }
     deleteCity = async () => {
         await axios.delete(`/api/cities/${this.state.city.id}`);
     };
 
-  toggleShowEdit = () => {
-    this.setState({ showEditCity: !this.state.showEditCity });
-  };
+    toggleShowEdit = () => {
+        this.setState({ showEditCity: !this.state.showEditCity });
+    };
+    handleSubmit = async event => {
+        event.preventDefault();
+        const cityId = this.state.city.id;
+        const cityUpdate = { ...this.state.city };
+        await axios.patch(`/api/cities/${cityId}`, cityUpdate);
+        this.toggleShowEdit();
+        await this.getSingleCity();
+    };
 
-  toggleCommentForm = () => {
-    this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm });
-  };
-
-  handleSubmit = async event => {
-    event.preventDefault();
-    const cityId = this.state.city.id;
-    const cityUpdate = { ...this.state.city };
-    await axios.patch(`/api/cities/${cityId}`, cityUpdate);
-    this.toggleShowEdit();
-    await this.getSingleCity();
-  };
-
-  handleChange = event => {
-    const city = event.target.name;
-    const newCity = { ...this.state.city };
-    newCity[city] = event.target.value;
-    this.setState({ city: newCity });
-  };
-
-  render() {
-    return (
-      <StyleWrapper>
-        <div>
-          <h1>Welcome to {this.state.city.name}!</h1>
-          <img src={this.state.city.photo_url} />
-          <DescriptionWrapper>
-            <p>{this.state.city.description}</p>
-          </DescriptionWrapper>
-          <ButtonWrapper>
-            <button negative onClick={this.toggleCommentForm}>
-              New Comment
-            </button>
-            {this.state.showCreateCommentForm ? <NewCommentForm /> : null}
-            <button negative onClick={this.toggleShowEdit}>
-              Edit {this.state.city.name}
-            </button>
-            <button negative onClick={this.deleteCity}>
-              Delete {this.state.city.name}
-            </button>
-          </ButtonWrapper>
-        </div>
-      </StyleWrapper>
-    );
-  }
+    render() {
+        return (
+            <StyleWrapper>
+                <div>
+                    <h1>Welcome to {this.state.city.name}!</h1>
+                    <img src={this.state.city.photo_url} />
+                    <DescriptionWrapper>
+                        <p>{this.state.city.description}</p>
+                    </DescriptionWrapper>
+                    <CommentList cityId={this.state.city.id} getSingleCity={this.getSingleCity} comments={this.state.comments} />
+                    <ButtonWrapper>
+                        <button negative onClick={this.toggleShowEdit}>
+                            Edit {this.state.city.name}
+                        </button>
+                        <button negative onClick={this.deleteCity}>
+                            Delete {this.state.city.name}
+                        </button>
+                    </ButtonWrapper>
+                </div>
+            </StyleWrapper>
+        );
+    }
 }
 
 export default SingleCityView;
