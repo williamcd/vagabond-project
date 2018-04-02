@@ -7,6 +7,21 @@ import Footer from "../static-components/Footer";
 import NewCommentForm from "../comments/NewCommentForm";
 import CommentList from "../comments/CommentList";
 
+
+
+const WeatherContainer = styled.div`
+text-align: center;
+margin: 0 auto;
+padding-bottom: 10px;
+font-family: 'Kameron', serif;
+background-color: white;
+max-width: 300px;
+margin-bottom: 20px;
+margin-top: 20px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`
+
+
 class SingleCityView extends Component {
   state = {
     city: {},
@@ -16,11 +31,13 @@ class SingleCityView extends Component {
     newComment: {
       title: "",
       content: ""
-    }
+    },
+    weather: {},
   };
 
   componentDidMount() {
     this.getSingleCity();
+    this.getWeather();
   }
   getSingleCity = async () => {
     const cityId = this.props.match.params.id;
@@ -34,6 +51,22 @@ class SingleCityView extends Component {
   deleteCity = async () => {
     await axios.delete(`/api/cities/${this.state.city.id}`);
   };
+
+  getWeather = async () => {
+    const zipcode = this.state.city
+    const response = await axios.get(`/api/weather/${cityId}`)
+    const formattedResponse = {
+        humidity: response.data.main.humidity,
+        temp: response.data.main.temp,
+        description: response.data.weather[0].description,
+        windSpeed: response.data.wind.speed,
+        icon: response.data.weather[0].icon,
+        general: response.data.weather[0].main,
+        sunset: response.data.sys.sunset
+        
+    }
+    this.setState({weather: formattedResponse})
+}
 
   toggleShowEdit = () => {
     this.setState({ showEditCity: !this.state.showEditCity });
@@ -56,6 +89,19 @@ class SingleCityView extends Component {
           <DescriptionWrapper>
             <p>{this.state.city.description}</p>
           </DescriptionWrapper>
+
+          <WeatherContainer>
+                        <h5>Current Weather</h5>
+                    <p>{this.state.weather.temp}°F </p>
+                    <p> {this.state.weather.general}</p>
+                    <img alt="icon depiction of the the api's weather description" src={`http://openweathermap.org/img/w/${this.state.weather.icon}.png`} />
+                    
+                    <p>{this.state.weather.description} </p>
+                    <p>humidity: {this.state.weather.humidity}%</p>
+                    <p>wind speed: {this.state.weather.windSpeed}</p>
+            
+                </WeatherContainer>
+
           <ButtonWrapper>
             <button negative onClick={this.deleteCity}>
               Delete {this.state.city.name}

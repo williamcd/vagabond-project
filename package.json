@@ -9,6 +9,8 @@
         "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
     },
     "dependencies": {
+        "moment": "^2.19.2",
+        "moment-timezone": "^0.5.14",
         "semantic-ui": "^2.3.1"
     }
 }

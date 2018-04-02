@@ -4,4 +4,6 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+  get '/api/cities/weather/:id', to: "weather#show"
+
 end
