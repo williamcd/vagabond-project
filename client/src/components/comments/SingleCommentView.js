@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import EditCommentForm from './EditCommentForm'
+import DeleteConfirm from './DeleteConfirm'
 
 class SingleCommentView extends Component {
     state = {
@@ -9,6 +10,7 @@ class SingleCommentView extends Component {
             content: '',
         },
         editForm: false,
+        deleteConfirm: false,
     }
     componentDidMount() {
         this.getSingleComment()
@@ -24,6 +26,9 @@ class SingleCommentView extends Component {
     toggleEdit = () => {
         this.setState({ editForm: !this.state.editForm })
     }
+    toggleDelete = () => {
+        this.setState({ deleteConfirm: !this.state.deleteConfirm })
+    }
     handleChange = (event) => {
         const comment = { ...this.state.comment }
         comment[event.target.name] = event.target.value
@@ -37,6 +42,9 @@ class SingleCommentView extends Component {
         await axios.patch(`/api/cities/${cityId}/comments/${commentId}`, payload)
         // await this.getSingleComment()
     }
+    deleteComment = async (event) => {
+        event.preventDefault()
+    }
     render() {
         return (
             <div>
@@ -47,6 +55,7 @@ class SingleCommentView extends Component {
                                                         handleChange={this.handleChange} 
                                                         comment={this.state.comment} 
                                                         getSingleComment={this.getSingleComment} /> : null}
+                {this.state.deleteConfirm ? <DeleteConfirm delete={this.deleteComment} toggleDelete={this.toggleDelete}/> : null}
             </div>
         );
     }
