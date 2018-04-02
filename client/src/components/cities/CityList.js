@@ -64,19 +64,19 @@ class CityList extends Component {
   render() {
     return (
       <PageWrapper>
-        
+        <ContentWrapper>
           {this.state.cities.map(city => {
             return (
               <div key={city.id}>
                 <Link to={`/cities/${city.id}`}>
-                  <img src={city.photo_url} />
+                  <img src={city.photo_url} alt={city.name}/>
                 </Link>
                 <h1>{city.name}</h1>
-                <p>{city.description}</p>
+                {/* <p>{city.description}</p> */}
               </div>
             );
           })}
-        
+        </ContentWrapper>
         <button onClick={this.toggleNewCityForm}>Create a city</button>
         {this.state.newCityFormOpen ? (
           <NewCityForm
@@ -105,7 +105,8 @@ const PageWrapper = styled.div`
 
   img {
     width: 70%;
-    margin: 15px;
+    display: block;
+    margin: 0 auto;
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
@@ -118,8 +119,12 @@ const PageWrapper = styled.div`
     font-size: 28px;
     text-shadow: 1px 2px black;
     padding-bottom: 50px;
-    text-decoration: none !important;
+    text-align: center;
   }
+`;
+
+const ContentWrapper = styled.div`
+  align-items: center;
 `;
 
 export default CityList;
