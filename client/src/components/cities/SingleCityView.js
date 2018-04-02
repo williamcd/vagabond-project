@@ -70,16 +70,16 @@ class SingleCityView extends Component {
             <p>{this.state.city.description}</p>
           </DescriptionWrapper>
           <ButtonWrapper>
-            <button negative onClick={this.deleteCity}>
-              Delete {this.state.city.name}
+            <button negative onClick={this.toggleCommentForm}>
+              New Comment
             </button>
+            {this.state.showCreateCommentForm ? <NewCommentForm /> : null}
             <button negative onClick={this.toggleShowEdit}>
               Edit {this.state.city.name}
             </button>
-            <button negative onClick={this.toggleCommentForm}>
-              Create a comment
+            <button negative onClick={this.deleteCity}>
+              Delete {this.state.city.name}
             </button>
-            {this.state.showCreateCommentForm ? <NewCommentForm /> : null}
           </ButtonWrapper>
         </div>
       </StyleWrapper>
@@ -138,4 +138,7 @@ const ButtonWrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-evenly;
+  button {
+    margin: 30px;
+  }
 `;
