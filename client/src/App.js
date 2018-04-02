@@ -7,7 +7,6 @@ import SingleCityView from './components/cities/SingleCityView'
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
 
-
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
 @import url('https://fonts.googleapis.com/css?family=Diplomata+SC');
