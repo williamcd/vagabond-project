@@ -52,7 +52,9 @@ class SingleCityView extends Component {
       <StyleWrapper>
         <div>
           <h1>Welcome to {this.state.city.name}!</h1>
-          <img src={this.state.city.photo_url} />
+          <ImageWrapper>
+            <img src={this.state.city.photo_url} />
+          </ImageWrapper>
           <DescriptionWrapper>
             <p>{this.state.city.description}</p>
           </DescriptionWrapper>
@@ -121,6 +123,10 @@ const ButtonWrapper = styled.div`
   button {
     margin: 30px;
   }
+`;
+
+const ImageWrapper = styled.div`
+  margin: 15px;
 `;
 
 const CommentWrapper = styled.div`

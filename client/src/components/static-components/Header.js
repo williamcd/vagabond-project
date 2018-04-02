@@ -6,9 +6,10 @@ class Header extends Component {
   render() {
     return (
       <HeaderStyles>
-        <div>
           <h1>Wanderlust in the City</h1>
-        </div>
+          <Link style={{ textDecoration: "none" }} to="/">
+            <h3>All Cities</h3>
+          </Link>
       </HeaderStyles>
     );
   }
@@ -22,7 +23,17 @@ const HeaderStyles = styled.div`
   background: black;
   color: #f2b90c;
   text-align: center;
-  text-shadow: 1px 2px lightgrey;
+  text-shadow: 1px 1px lightgrey;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 28px;
+
+  h3 {
+    color:white;
+  }
+
+  h3:visited {
+    color: white;
+  }
 
   h1 {
     font-family: "Sarina", cursive;
