@@ -4,61 +4,72 @@ import axios from 'axios'
 
 import Header from "../static-components/Header";
 import Footer from "../static-components/Footer";
+import NewCommentForm from '../comments/NewCommentForm';
 
 class SingleCityView extends Component {
     state = {
         city: {},
         comments: [],
-        showEditCity: false
+        showEditCity: false,
+        showCreateCommentForm: false,
+        newComment: {
+            title: '',
+            content: ''
+        }
     }
 
-    componentDidMount () {
-        this.getSingleCity ()
+    componentDidMount() {
+        this.getSingleCity()
     }
 
     getSingleCity = async () => {
         const cityId = this.props.match.params.id
         const response = await axios.get(`/api/cities/${cityId}`)
         this.setState({
-            city: response.data.city, 
+            city: response.data.city,
             comments: response.data.comments
         })
         console.log(response.data)
     }
 
     deleteCity = async event => {
-        const singleCityId = this.props.match.params.cityId;
-        await axios.delete(`/api/cities/${singleCityId}`);
-        console.log(this.props.match.params.id);
-        this.history.push("/");
-      };
+        await axios.delete(`/api/cities/${this.state.city.id}`);
+    };
 
-      toggleShowEdit = () => {
-          this.setState({ showEditCity: !this.state.showEditCity })
-      }
+    toggleShowEdit = () => {
+        this.setState({ showEditCity: !this.state.showEditCity })
+    }
 
-      handleSubmit = async event => {
-          event.preventDefault()
-          const cityId = this.state.city.id
-          const cityUpdate = { ...this.state.city }
-          await axios.patch(`/api/cities/${cityId}`, cityUpdate)
-          this.toggleShowEdit()
-          await this.getSingleCity()
-      }
+    toggleCommentForm = () => {
+        this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm })
+    }
 
-      handleChange = event => {
-          const city = event.target.name 
-          const newCity = { ...this.state.city }
-          newCity[ city ] = event.target.value 
-          this.setState({ city: newCity })
-      }
-    
+    handleSubmit = async event => {
+        event.preventDefault()
+        const cityId = this.state.city.id
+        const cityUpdate = { ...this.state.city }
+        await axios.patch(`/api/cities/${cityId}`, cityUpdate)
+        this.toggleShowEdit()
+        await this.getSingleCity()
+    }
+
+    handleChange = event => {
+        const city = event.target.name
+        const newCity = { ...this.state.city }
+        newCity[city] = event.target.value
+        this.setState({ city: newCity })
+    }
+
     render() {
         return (
             <div>
                 <button negative onClick={this.deleteCity}>
-                  Delete {this.state.city.name}
+                    Delete {this.state.city.name}
                 </button>
+                <button negative onClick={this.toggleCommentForm}>
+                    Create a comment
+                </button>
+                {this.state.showCreateCommentForm ? <NewCommentForm /> : null}
             </div>
         );
     }
