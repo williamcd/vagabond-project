@@ -18,7 +18,7 @@ const FooterStyles = styled.div`
   width: 100%;
   padding: 10px;
   background: black;
-  color: white;
+  color: #f2b90c;
   text-align: center;
 
   h4 {
