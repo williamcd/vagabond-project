@@ -48,7 +48,6 @@ class CityList extends Component {
   createNewCity = async event => {
     event.preventDefault();
     const response = await axios.post("/api/cities", this.state.newCity);
-    // const cities = [...this.state.cities, response.data]
     this.getAllCities();
     this.setState({
       newCity: {
@@ -57,7 +56,6 @@ class CityList extends Component {
         photo_url: ""
       }
     });
-    this.getAllCities();
     this.toggleNewCityForm();
   };
 

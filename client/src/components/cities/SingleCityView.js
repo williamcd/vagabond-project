@@ -4,7 +4,8 @@ import axios from "axios";
 
 import Header from "../static-components/Header";
 import Footer from "../static-components/Footer";
-import NewCommentForm from "../comments/NewCommentForm";
+import NewCommentForm from '../comments/NewCommentForm';
+import CommentList from '../comments/CommentList';
 
 class SingleCityView extends Component {
   state = {
@@ -18,23 +19,20 @@ class SingleCityView extends Component {
     }
   };
 
-  componentDidMount() {
-    this.getSingleCity();
-  }
-
-  getSingleCity = async () => {
-    const cityId = this.props.match.params.id;
-    const response = await axios.get(`/api/cities/${cityId}`);
-    this.setState({
-      city: response.data.city,
-      comments: response.data.comments
-    });
-    console.log(response.data);
-  };
-
-  deleteCity = async event => {
-    await axios.delete(`/api/cities/${this.state.city.id}`);
-  };
+    componentDidMount() {
+        this.getSingleCity()
+    }
+    getSingleCity = async () => {
+        const cityId = this.props.match.params.id
+        const response = await axios.get(`/api/cities/${cityId}`)
+        this.setState({
+            city: response.data.city,
+            comments: response.data.comments
+        })
+    }
+    deleteCity = async () => {
+        await axios.delete(`/api/cities/${this.state.city.id}`);
+    };
 
   toggleShowEdit = () => {
     this.setState({ showEditCity: !this.state.showEditCity });
