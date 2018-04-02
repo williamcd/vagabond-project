@@ -38,7 +38,7 @@ class CommentList extends Component {
             <div key={comment.id}>
               <LinkWrapper>
                 <Link
-                  to={`/api/cities/${this.props.cityId}/comments/${comment.id}`}
+                  to={`/cities/${this.props.cityId}/comments/${comment.id}`}
                 >
                   <h3>{comment.title}</h3>
                 </Link>

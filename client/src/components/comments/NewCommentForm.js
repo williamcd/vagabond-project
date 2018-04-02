@@ -19,7 +19,7 @@ class NewCommentForm extends Component {
                     placeholder="Content" 
                     type="text" 
                     name="content" 
-                    valiue={this.props.newComment.content} />
+                    value={this.props.newComment.content} />
                     <input id="submit" type="submit" value="Add Comment" />
                 </form>
                 </FormStyle>
