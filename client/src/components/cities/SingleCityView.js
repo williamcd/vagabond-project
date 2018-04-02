@@ -122,8 +122,8 @@ const DescriptionWrapper = styled.div`
   color: white;
   border-radius: 15px;
   width: 60%;
-  font-size: 24px;
-  text-shadow: 1px 2px black;
+  font-size: 20px;
+  text-shadow: 2px 2px black;
   text-align: center;
   display: block;
   margin: 0 auto;
