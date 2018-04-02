@@ -18,9 +18,9 @@ class EditCommentForm extends Component {
     saveComment = async event => {
         event.preventDefault();
         const cityId = this.props.cityId;
-        const commentId = this.props.commentId;
+        const commentId = this.props.comment.id;
         const payload = this.state.comment;
-        await axios.patch(`/api/cities/${cityId}/comments/${commentId}`, payload);
+        await axios.patch(`/api/cities/${cityId}/comments/${this.props.comment.id}`, payload);
         this.props.refreshComments()
     };
     handleChange = event => {
