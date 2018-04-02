@@ -34,10 +34,12 @@ class SingleCityView extends Component {
     },
     weather: {},
   };
+  async componentWillMount() {
+    this.getWeather();
+  }
 
   componentDidMount() {
     this.getSingleCity();
-    this.getWeather();
   }
   getSingleCity = async () => {
     const cityId = this.props.match.params.id;
@@ -53,8 +55,8 @@ class SingleCityView extends Component {
   };
 
   getWeather = async () => {
-    const zipcode = this.state.city
-    const response = await axios.get(`/api/weather/${cityId}`)
+    const city = this.state.city
+    const response = await axios.get(`/api/cities/${city.id}`)
     const formattedResponse = {
         humidity: response.data.main.humidity,
         temp: response.data.main.temp,
