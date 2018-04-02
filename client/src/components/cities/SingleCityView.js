@@ -50,7 +50,6 @@ class SingleCityView extends Component {
   render() {
     return (
       <StyleWrapper>
-        <div>
           <h1>Welcome to {this.state.city.name}!</h1>
           <ImageWrapper>
             <img src={this.state.city.photo_url} />
@@ -58,11 +57,13 @@ class SingleCityView extends Component {
           <DescriptionWrapper>
             <p>{this.state.city.description}</p>
           </DescriptionWrapper>
-          <CommentList
-                cityId={this.state.city.id}
-                getSingleCity={this.getSingleCity}
-                comments={this.state.comments} />
-        </div>
+          <CommentWrapper>
+            <CommentList
+              cityId={this.state.city.id}
+              getSingleCity={this.getSingleCity}
+              comments={this.state.comments}
+            />
+          </CommentWrapper>
       </StyleWrapper>
     );
   }
@@ -101,6 +102,7 @@ const StyleWrapper = styled.div`
     text-align: center;
   }
 `;
+
 const DescriptionWrapper = styled.div`
   color: white;
   border-radius: 15px;
@@ -127,6 +129,7 @@ const ButtonWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   margin: 15px;
+  width: 100%;
 `;
 
 const CommentWrapper = styled.div`

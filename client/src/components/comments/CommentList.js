@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import EditCommentForm from './EditCommentForm'
+import EditCommentForm from "./EditCommentForm";
 import NewCommentForm from "./NewCommentForm";
-import Comment from './Comment'
+import Comment from "./Comment";
 
 class CommentList extends Component {
   state = {
@@ -35,27 +35,17 @@ class CommentList extends Component {
   toggleCommentForm = () => {
     this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm });
   };
-  
+
   render() {
     return (
       <div>
         {this.props.comments.map(comment => {
           return (
-            // <div key={comment.id}>
-            //   <h3>{comment.title}</h3>
-            //   <p>{comment.content}</p>
-            //   <button onClick={this.toggleEditForm}>Edit</button>
-            //   <button onClick={this.deleteComment}>Delete</button>
-            //   {this.state.toggleEditForm ? <EditCommentForm comment={comment}
-            //                                                 getSingleCity={this.props.getSingleCity} 
-            //                                                 commentId={comment.id}
-            //                                                 cityId={this.props.cityId}
-            //                                                 refreshComments={this.props.getSingleCity}/> : null}
-            //   <hr />
-            // </div>
-            <Comment comment={comment} 
-                    cityId={this.props.cityId} 
-                    refreshComments={this.props.getSingleCity} />
+            <Comment
+              comment={comment}
+              cityId={this.props.cityId}
+              refreshComments={this.props.getSingleCity}
+            />
           );
         })}
         <ButtonWrapper>
@@ -80,6 +70,7 @@ export default CommentList;
 const ButtonWrapper = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   button {
     margin: 30px;

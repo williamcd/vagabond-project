@@ -35,6 +35,7 @@ class Comment extends Component {
                 <button onClick={this.toggleDelete}>delete</button>
                 {this.state.editForm ? <EditCommentForm comment={this.props.comment} cityId={this.props.cityId} refreshComments={this.props.refreshComments}/> : null}
                 {this.state.deleteConfirm ? <DeleteConfirm deleteComment={this.deleteComment} cancelDelete={this.toggleDelete}/> : null}
+                <hr />
             </div>
         );
     }
