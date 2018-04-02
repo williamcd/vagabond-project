@@ -5,6 +5,7 @@ import axios from 'axios'
 import Header from "../static-components/Header";
 import Footer from "../static-components/Footer";
 import NewCommentForm from '../comments/NewCommentForm';
+import CommentList from '../comments/CommentList'
 
 class SingleCityView extends Component {
     state = {
@@ -29,10 +30,9 @@ class SingleCityView extends Component {
             city: response.data.city,
             comments: response.data.comments
         })
-        console.log(response.data)
     }
 
-    deleteCity = async event => {
+    deleteCity = async () => {
         await axios.delete(`/api/cities/${this.state.city.id}`);
     };
 
@@ -44,28 +44,19 @@ class SingleCityView extends Component {
         this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm })
     }
 
-    handleSubmit = async event => {
-        event.preventDefault()
-        const cityId = this.state.city.id
-        const cityUpdate = { ...this.state.city }
-        await axios.patch(`/api/cities/${cityId}`, cityUpdate)
-        this.toggleShowEdit()
-        await this.getSingleCity()
-    }
-
-    handleChange = event => {
-        const city = event.target.name
-        const newCity = { ...this.state.city }
-        newCity[city] = event.target.value
-        this.setState({ city: newCity })
+    handleChange = (event) => {
+        const newComment = { ...this.state.newComment }
+        newComment[event.target.name] = event.target.value
+        this.setState({ newComment })
     }
 
     render() {
         return (
             <div>
-                <button negative onClick={this.deleteCity}>
+                <CommentList comments={this.state.comments}/>
+                {/* <button negative onClick={this.deleteCity}>
                     Delete {this.state.city.name}
-                </button>
+                </button> */}
                 <button negative onClick={this.toggleCommentForm}>
                     Create a comment
                 </button>
