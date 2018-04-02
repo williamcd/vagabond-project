@@ -11,6 +11,7 @@ import Footer from "./components/static-components/Footer";
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
 @import url('https://fonts.googleapis.com/css?family=Diplomata+SC');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Pen+Script');
 
 button {
   padding: 10px;

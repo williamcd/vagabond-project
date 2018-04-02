@@ -4,71 +4,74 @@ import axios from "axios";
 
 import Header from "../static-components/Header";
 import Footer from "../static-components/Footer";
-import NewCommentForm from '../comments/NewCommentForm';
-import CommentList from '../comments/CommentList';
+import NewCommentForm from "../comments/NewCommentForm";
+import CommentList from "../comments/CommentList";
 
 class SingleCityView extends Component {
-    state = {
-        city: {},
-        comments: [],
-        showEditCity: false,
-        showCreateCommentForm: false,
-        newComment: {
-            title: "",
-            content: ""
-        }
-    };
-
-    componentDidMount() {
-        this.getSingleCity()
+  state = {
+    city: {},
+    comments: [],
+    showEditCity: false,
+    showCreateCommentForm: false,
+    newComment: {
+      title: "",
+      content: ""
     }
-    getSingleCity = async () => {
-        const cityId = this.props.match.params.id
-        const response = await axios.get(`/api/cities/${cityId}`)
-        this.setState({
-            city: response.data.city,
-            comments: response.data.comments
-        })
-        console.log(this.state.comments)
-    }
-    deleteCity = async () => {
-        await axios.delete(`/api/cities/${this.state.city.id}`);
-    };
+  };
 
-    toggleShowEdit = () => {
-        this.setState({ showEditCity: !this.state.showEditCity });
-    };
-    handleSubmit = async event => {
-        event.preventDefault();
-        const cityId = this.state.city.id;
-        const cityUpdate = { ...this.state.city };
-        await axios.patch(`/api/cities/${cityId}`, cityUpdate);
-        this.toggleShowEdit();
-        await this.getSingleCity();
-    };
+  componentDidMount() {
+    this.getSingleCity();
+  }
+  getSingleCity = async () => {
+    const cityId = this.props.match.params.id;
+    const response = await axios.get(`/api/cities/${cityId}`);
+    this.setState({
+      city: response.data.city,
+      comments: response.data.comments
+    });
+    console.log(this.state.comments);
+  };
+  deleteCity = async () => {
+    await axios.delete(`/api/cities/${this.state.city.id}`);
+  };
 
-    render() {
-        return (
-            <StyleWrapper>
-                <div>
-                    <h1>Welcome to {this.state.city.name}!</h1>
-                    <img src={this.state.city.photo_url} />
-                    <DescriptionWrapper>
-                        <p>{this.state.city.description}</p>
-                    </DescriptionWrapper>
-                    <CommentList cityId={this.state.city.id} getSingleCity={this.getSingleCity} comments={this.state.comments} />
-                    <ButtonWrapper>
-                        <button negative onClick={this.toggleShowEdit}>
-                            Edit {this.state.city.name}
-                        </button>
-                        <button negative onClick={this.deleteCity}>
-                            Delete {this.state.city.name}
-                        </button>
-                    </ButtonWrapper>
-                </div>
-            </StyleWrapper>
-        );
-    }
+  toggleShowEdit = () => {
+    this.setState({ showEditCity: !this.state.showEditCity });
+  };
+  handleSubmit = async event => {
+    event.preventDefault();
+    const cityId = this.state.city.id;
+    const cityUpdate = { ...this.state.city };
+    await axios.patch(`/api/cities/${cityId}`, cityUpdate);
+    this.toggleShowEdit();
+    await this.getSingleCity();
+  };
+
+  render() {
+    return (
+      <StyleWrapper>
+        <div>
+          <h1>Welcome to {this.state.city.name}!</h1>
+          <img src={this.state.city.photo_url} />
+          <DescriptionWrapper>
+            <p>{this.state.city.description}</p>
+          </DescriptionWrapper>
+          <ButtonWrapper>
+            <button negative onClick={this.deleteCity}>
+              Delete {this.state.city.name}
+            </button>
+            <CommentWrapper>
+              <CommentList
+                cityId={this.state.city.id}
+                getSingleCity={this.getSingleCity}
+                comments={this.state.comments}
+              />
+            </CommentWrapper>
+          </ButtonWrapper>
+        </div>
+      </StyleWrapper>
+    );
+  }
 }
 
 export default SingleCityView;
@@ -121,8 +124,21 @@ const DescriptionWrapper = styled.div`
 const ButtonWrapper = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   button {
     margin: 30px;
   }
+`;
+
+const CommentWrapper = styled.div`
+  background-color: white;
+  text-align: center;
+  border-radius: 15px;
+  width: 60%;
+  margin: 20px;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 24px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-decoration: none;
 `;
