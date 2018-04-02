@@ -1,36 +1,62 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import DeleteConfirm from "./DeleteConfirm";
+import axios from 'axios'
 
 class EditCommentForm extends Component {
-  render() {
-    return (
-      <div>
-        <FormStyle>
-          <form
-            id="form"
-            onSubmit={this.props.saveComment}
-            className="topBefore"
-          >
-            <input
-              onChange={this.props.handleChange}
-              type="text"
-              placeholder="title"
-              name="title"
-              value={this.props.comment.title}
-            />
-            <input
-              onChange={this.props.handleChange}
-              type="text"
-              placeholder="content"
-              name="content"
-              value={this.props.comment.content}
-            />
-            <input id="submit" type="submit" value="Update Comment" />
-          </form>
-        </FormStyle>
-      </div>
-    );
-  }
+    state = {
+        comment: {
+            title: '',
+            content: ''
+        },
+        editForm: false,
+        deleteConfirm: false,
+    }
+    componentDidMount() {
+        this.setState({ comment: this.props.comment })
+    }
+    saveComment = async event => {
+        event.preventDefault();
+        const cityId = this.props.cityId;
+        const commentId = this.props.commentId;
+        const payload = this.state.comment;
+        await axios.patch(`/api/cities/${cityId}/comments/${commentId}`, payload);
+        this.props.refreshComments()
+    };
+    handleChange = event => {
+        const comment = { ...this.state.comment };
+        comment[event.target.name] = event.target.value;
+        this.setState({ comment });
+    };
+    render() {
+        return (
+            <div>
+                <FormStyle>
+                    <form
+                        id="form"
+                        onSubmit={this.saveComment}
+                        className="topBefore"
+                    >
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            placeholder="title"
+                            name="title"
+                            value={this.state.comment.title}
+                        />
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            placeholder="content"
+                            name="content"
+                            value={this.state.comment.content}
+                        />
+                        <input id="submit" type="submit" value="Update Comment" />
+                    </form>
+                </FormStyle>
+            </div>
+        );
+    }
 }
 
 export default EditCommentForm;

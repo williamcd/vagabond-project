@@ -3,8 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import NewCityForm from "./NewCityForm";
-
 class CityList extends Component {
   state = {
     cities: [],
@@ -31,32 +29,10 @@ class CityList extends Component {
     }
   };
 
-  toggleShowForm = () => {
-    this.setState({ createNewCity: !this.state.createNewCity });
-  };
-
-  toggleNewCityForm = () => {
-    this.setState({ newCityFormOpen: !this.state.newCityFormOpen });
-  };
-
   handleChange = event => {
     const newCity = { ...this.state.newCity };
     newCity[event.target.name] = event.target.value;
     this.setState({ newCity });
-  };
-
-  createNewCity = async event => {
-    event.preventDefault();
-    const response = await axios.post("/api/cities", this.state.newCity);
-    this.getAllCities();
-    this.setState({
-      newCity: {
-        name: "",
-        description: "",
-        photo_url: ""
-      }
-    });
-    this.toggleNewCityForm();
   };
 
   render() {
@@ -74,14 +50,6 @@ class CityList extends Component {
             );
           })}
         </ContentWrapper>
-        <button onClick={this.toggleNewCityForm}>Create a city</button>
-        {this.state.newCityFormOpen ? (
-          <NewCityForm
-            newCity={this.state.newCity}
-            handleChange={this.handleChange}
-            createNewCity={this.createNewCity}
-          />
-        ) : null}
       </PageWrapper>
     );
   }

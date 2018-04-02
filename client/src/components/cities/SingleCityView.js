@@ -56,18 +56,10 @@ class SingleCityView extends Component {
           <DescriptionWrapper>
             <p>{this.state.city.description}</p>
           </DescriptionWrapper>
-          <ButtonWrapper>
-            <button negative onClick={this.deleteCity}>
-              Delete {this.state.city.name}
-            </button>
-            <CommentWrapper>
-              <CommentList
+          <CommentList
                 cityId={this.state.city.id}
                 getSingleCity={this.getSingleCity}
-                comments={this.state.comments}
-              />
-            </CommentWrapper>
-          </ButtonWrapper>
+                comments={this.state.comments} />
         </div>
       </StyleWrapper>
     );

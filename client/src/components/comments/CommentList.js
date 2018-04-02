@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import EditCommentForm from './EditCommentForm'
 import NewCommentForm from "./NewCommentForm";
+import Comment from './Comment'
 
 class CommentList extends Component {
   state = {
@@ -11,7 +12,8 @@ class CommentList extends Component {
     newComment: {
       title: "",
       content: ""
-    }
+    },
+    toggleEditForm: false
   };
   createComment = async event => {
     event.preventDefault();
@@ -30,22 +32,29 @@ class CommentList extends Component {
   toggleCommentForm = () => {
     this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm });
   };
+  toggleEditForm = () => {
+    this.setState({ toggleEditForm: !this.state.toggleEditForm })
+  }
   render() {
     return (
       <div>
         {this.props.comments.map(comment => {
           return (
-            <div key={comment.id}>
-              <LinkWrapper>
-                <Link
-                  to={`/cities/${this.props.cityId}/comments/${comment.id}`}
-                >
-                  <h3>{comment.title}</h3>
-                </Link>
-              </LinkWrapper>
-              <p>{comment.content}</p>
-              <hr />
-            </div>
+            // <div key={comment.id}>
+            //   <h3>{comment.title}</h3>
+            //   <p>{comment.content}</p>
+            //   <button onClick={this.toggleEditForm}>Edit</button>
+            //   <button onClick={this.deleteComment}>Delete</button>
+            //   {this.state.toggleEditForm ? <EditCommentForm comment={comment}
+            //                                                 getSingleCity={this.props.getSingleCity} 
+            //                                                 commentId={comment.id}
+            //                                                 cityId={this.props.cityId}
+            //                                                 refreshComments={this.props.getSingleCity}/> : null}
+            //   <hr />
+            // </div>
+            <Comment comment={comment} 
+                    cityId={this.props.cityId} 
+                    refreshComments={this.props.getSingleCity} />
           );
         })}
         <ButtonWrapper>
