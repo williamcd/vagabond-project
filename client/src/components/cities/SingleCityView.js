@@ -56,6 +56,9 @@ class SingleCityView extends Component {
     render() {
         return (
             <div>
+                <h1>{this.state.city.name}</h1>
+                <img src={this.state.city.photo_url} />
+                <p>{this.state.city.description}</p>
                 <button negative onClick={this.deleteCity}>
                   Delete {this.state.city.name}
                 </button>
