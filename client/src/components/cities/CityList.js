@@ -66,9 +66,11 @@ class CityList extends Component {
           {this.state.cities.map(city => {
             return (
               <div key={city.id}>
-                <Link to={`/cities/${city.id}`}>
-                  <img src={city.photo_url} alt={city.name}/>
-                </Link>
+                <ImageWrapper>
+                  <Link to={`/cities/${city.id}`}>
+                    <img src={city.photo_url} alt={city.name} />
+                  </Link>
+                </ImageWrapper>
                 <h1>{city.name}</h1>
               </div>
             );
@@ -118,6 +120,10 @@ const PageWrapper = styled.div`
     padding-bottom: 50px;
     text-align: center;
   }
+`;
+
+const ImageWrapper = styled.div`
+  margin: 15px;
 `;
 
 const ContentWrapper = styled.div`
