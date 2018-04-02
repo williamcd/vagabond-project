@@ -9,15 +9,6 @@ class CommentList extends Component {
             content: ''
         }
     }
-    handleChange = (event) => {
-        const newComment = { ...this.state.newComment }
-        newComment[event.target.name] = event.target.value
-        this.setState({ newComment })
-    }
-    createComment = async (event) => {
-        event.preventDefault()
-        const response = await axios.post(`/api/cities/${this.props.cityId}/comments`)
-    }
     render() {
         return (
             <div>
@@ -26,8 +17,6 @@ class CommentList extends Component {
                         <div key={comment.id}>
                             <h3>{comment.title}</h3>
                             <p>{comment.content}</p>
-                            <button>edit</button>
-                            <button>delete</button>
                         </div>
                     );
                 })}

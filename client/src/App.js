@@ -4,6 +4,7 @@ import { injectGlobal } from "styled-components";
 
 import CityList from './components/cities/CityList'
 import SingleCityView from './components/cities/SingleCityView'
+import SingleCommentView from './components/comments/SingleCommentView'
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
 
@@ -36,6 +37,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={CityList} />
             <Route path="/cities/:id" component={SingleCityView} />
+            <Route path="/cities/:city_id/comments/:id" component={SingleCommentView} />
           </Switch>
           <Footer />
         </div>
