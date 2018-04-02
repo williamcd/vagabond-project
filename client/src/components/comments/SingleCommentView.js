@@ -28,15 +28,14 @@ class SingleCommentView extends Component {
         const comment = { ...this.state.comment }
         comment[event.target.name] = event.target.value
         this.setState({ comment })
-        console.log(this.state.comment)
     }
-    saveComment = async () => {
+    saveComment = async (event) => {
+        event.preventDefault()
         const cityId = this.props.match.params.city_id
         const commentId = this.props.match.params.id
         const payload = this.state.comment
-        console.log(payload)
         await axios.patch(`/api/cities/${cityId}/comments/${commentId}`, payload)
-        await this.getSingleComment()
+        // await this.getSingleComment()
     }
     render() {
         return (
@@ -44,7 +43,10 @@ class SingleCommentView extends Component {
                 <h1>{this.state.comment.title}</h1>
                 <p>{this.state.comment.content}</p>
                 <button onClick={this.toggleEdit}>edit</button><button onClick={this.toggleDelete}>delete</button>
-                {this.state.editForm ? <EditCommentForm handleChange={this.handleChange} comment={this.state.comment} getSingleComment={this.getSingleComment} /> : null}
+                {this.state.editForm ? <EditCommentForm saveComment={this.saveComment} 
+                                                        handleChange={this.handleChange} 
+                                                        comment={this.state.comment} 
+                                                        getSingleComment={this.getSingleComment} /> : null}
             </div>
         );
     }
