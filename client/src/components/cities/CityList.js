@@ -61,13 +61,6 @@ class CityList extends Component {
     this.toggleNewCityForm();
   };
 
-  //   deleteCity = async event => {
-  //     const singleCityId = this.props.match.params.cityId;
-  //     await axios.delete(`/api/cities/${singleCityId}`);
-  //     console.log(this.props.match.params.id);
-  //     this.history.push("/");
-  //   };
-
   render() {
     return (
       <PageWrapper>
@@ -80,9 +73,6 @@ class CityList extends Component {
                 </Link>
                 <h1>{city.name}</h1>
                 <p>{city.description}</p>
-                <button negative onClick={this.deleteCity}>
-                  Delete {city.name}
-                </button>
               </div>
             );
           })}
