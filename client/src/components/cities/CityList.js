@@ -1,27 +1,100 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from 'axios'
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+import NewCityForm from "./NewCityForm";
 
 class CityList extends Component {
-    state = {
-        city: {}
-    }
-
-  deleteCity = async event => {
-    const singleCityId = this.props.match.params.id;
-    await axios.delete(`/api/cities/${singleCityId}`);
-    console.log(this.props.match.params.id)
-    this.history.push("/");
+  state = {
+    cities: [],
+    newCityFormOpen: false,
+    newCity: {
+      name: "",
+      description: "",
+      photo_url: ""
+    },
+    error: ""
   };
+
+  componentDidMount() {
+    this.getAllCities();
+  }
+
+  getAllCities = async () => {
+    try {
+      const res = await axios.get("/api/cities");
+      this.setState({ cities: res.data.cities });
+      console.log(this.state);
+    } catch (err) {
+      this.setState({ err: err.message });
+    }
+  };
+
+  toggleShowForm = () => {
+    this.setState({ createNewCity: !this.state.createNewCity });
+  };
+
+  toggleNewCityForm = () => {
+    this.setState({ newCityFormOpen: !this.state.newCityFormOpen });
+  };
+
+  handleChange = event => {
+    const newCity = { ...this.state.newCity };
+    newCity[event.target.name] = event.target.value;
+    this.setState({ newCity });
+  };
+
+  createNewCity = async event => {
+    event.preventDefault();
+    const response = await axios.post("/api/cities", this.state.newCity);
+    // const cities = [...this.state.cities, response.data]
+    this.getAllCities();
+    this.setState({
+      newCity: {
+        name: "",
+        description: "",
+        photo_url: ""
+      }
+    });
+    this.getAllCities();
+    this.toggleNewCityForm();
+  };
+
+  //   deleteCity = async event => {
+  //     const singleCityId = this.props.match.params.cityId;
+  //     await axios.delete(`/api/cities/${singleCityId}`);
+  //     console.log(this.props.match.params.id);
+  //     this.history.push("/");
+  //   };
 
   render() {
     return (
       <PageWrapper>
-        <img src={this.props.cityPhoto} alt={this.props.cityName} />
-        <h1>{this.props.cityName}</h1>
-        <button negative onClick={this.deleteCity}>
-          Delete {this.props.cityName}
-        </button>
+        
+          {this.state.cities.map(city => {
+            return (
+              <div key={city.id}>
+                <Link to={`/cities/${city.id}`}>
+                  <img src={city.photo_url} />
+                </Link>
+                <h1>{city.name}</h1>
+                <p>{city.description}</p>
+                <button negative onClick={this.deleteCity}>
+                  Delete {city.name}
+                </button>
+              </div>
+            );
+          })}
+        
+        <button onClick={this.toggleNewCityForm}>Create a city</button>
+        {this.state.newCityFormOpen ? (
+          <NewCityForm
+            newCity={this.state.newCity}
+            handleChange={this.handleChange}
+            createNewCity={this.createNewCity}
+          />
+        ) : null}
       </PageWrapper>
     );
   }
@@ -55,6 +128,7 @@ const PageWrapper = styled.div`
     font-size: 28px;
     text-shadow: 1px 2px black;
     padding-bottom: 50px;
+    text-decoration: none !important;
   }
 `;
 
