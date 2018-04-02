@@ -72,7 +72,6 @@ class CityList extends Component {
                   <img src={city.photo_url} alt={city.name}/>
                 </Link>
                 <h1>{city.name}</h1>
-                {/* <p>{city.description}</p> */}
               </div>
             );
           })}
@@ -104,7 +103,7 @@ const PageWrapper = styled.div`
   align-items: center;
 
   img {
-    width: 70%;
+    width: 60%;
     display: block;
     margin: 0 auto;
     border-radius: 15px;

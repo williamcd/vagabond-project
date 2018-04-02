@@ -7,7 +7,7 @@ class Footer extends Component {
         return (
             <div>
                 <FooterStyles>
-                    <h4>©2018 by General Assembly</h4>
+                    <h4>©2018 by VagGroup General Assembly</h4>
                 </FooterStyles>              
             </div>
         );
@@ -23,7 +23,7 @@ const FooterStyles = styled.div`
 
   h4 {
     font-family: "Sarina", cursive;
-    font-size: 24px;
+    font-size: 18px;
     text-shadow: 1px 2px lightgrey;
   }
 `;

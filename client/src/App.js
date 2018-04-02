@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { injectGlobal } from "styled-components";
 
-import CityList from './components/cities/CityList'
-import SingleCityView from './components/cities/SingleCityView'
+import CityList from "./components/cities/CityList";
+import SingleCityView from "./components/cities/SingleCityView";
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
 
@@ -13,11 +13,12 @@ injectGlobal`
 
 button {
   padding: 10px;
-    margin: 10px 0px;
+    margin: 10px;
     border-radius: 5px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
+    align-items: center;
 }
 
 button:hover {
@@ -27,7 +28,6 @@ button:hover {
 `;
 
 class App extends Component {
-
   render() {
     return (
       <Router>
