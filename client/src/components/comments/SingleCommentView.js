@@ -44,6 +44,7 @@ class SingleCommentView extends Component {
     }
     deleteComment = async (event) => {
         event.preventDefault()
+        await axios.delete(`/api/cities/${this.props.match.params.city_id}/comments/${this.props.match.params.id}`)
     }
     render() {
         return (
