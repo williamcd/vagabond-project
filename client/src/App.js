@@ -36,8 +36,8 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={CityList} />
-            <Route path="/cities/:id" component={SingleCityView} />
-            <Route path="/cities/:city_id/comments/:id" component={SingleCommentView} />
+            <Route exact path="/cities/:id" component={SingleCityView} />
+            <Route exact path="/cities/:city_id/comments/:id" component={SingleCommentView} />
           </Switch>
           <Footer />
         </div>
