@@ -15,6 +15,7 @@ class CommentList extends Component {
     },
     toggleEditForm: false
   };
+
   createComment = async event => {
     event.preventDefault();
     const response = await axios.post(
@@ -23,18 +24,18 @@ class CommentList extends Component {
     );
     this.props.getSingleCity();
   };
+
   handleChange = event => {
     const newComment = { ...this.state.newComment };
     newComment[event.target.name] = event.target.value;
     this.setState({ newComment });
     console.log(this.state.newComment);
   };
+
   toggleCommentForm = () => {
     this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm });
   };
-  toggleEditForm = () => {
-    this.setState({ toggleEditForm: !this.state.toggleEditForm })
-  }
+  
   render() {
     return (
       <div>
