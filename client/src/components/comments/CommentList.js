@@ -22,6 +22,10 @@ class CommentList extends Component {
       `/api/cities/${this.props.cityId}/comments`,
       this.state.newComment
     );
+    this.setState({ newComment: {
+      title: '',
+      content: ''
+    }})
     this.props.getSingleCity();
   };
 
@@ -39,15 +43,6 @@ class CommentList extends Component {
   render() {
     return (
       <div>
-        {this.props.comments.slice(0).reverse().map(comment => {
-          return (
-            <Comment
-              comment={comment}
-              cityId={this.props.cityId}
-              refreshComments={this.props.getSingleCity}
-            />
-          );
-        })}
         <ButtonWrapper>
           <button negative onClick={this.toggleCommentForm}>
             New Comment
@@ -60,6 +55,15 @@ class CommentList extends Component {
             />
           ) : null}
         </ButtonWrapper>
+        {this.props.comments.slice(0).reverse().map(comment => {
+          return (
+            <Comment
+              comment={comment}
+              cityId={this.props.cityId}
+              refreshComments={this.props.getSingleCity}
+            />
+          );
+        })}
       </div>
     );
   }
