@@ -22,6 +22,7 @@ class EditCommentForm extends Component {
         const payload = this.state.comment;
         await axios.patch(`/api/cities/${cityId}/comments/${this.props.comment.id}`, payload);
         this.props.refreshComments()
+        this.props.toggleEdit()
     };
     handleChange = event => {
         const comment = { ...this.state.comment };

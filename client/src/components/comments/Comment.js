@@ -25,6 +25,7 @@ class Comment extends Component {
         const commentId = this.props.comment.id
         await axios.delete(`/api/cities/${cityId}/comments/${commentId}`)
         await this.props.refreshComments()
+        this.toggleDelete()
     }
     render() {
         return (
@@ -33,7 +34,7 @@ class Comment extends Component {
                 <p>{this.props.comment.content}</p>
                 <button onClick={this.toggleEdit}>edit</button>
                 <button onClick={this.toggleDelete}>delete</button>
-                {this.state.editForm ? <EditCommentForm comment={this.props.comment} cityId={this.props.cityId} refreshComments={this.props.refreshComments}/> : null}
+                {this.state.editForm ? <EditCommentForm toggleEdit={this.toggleEdit} comment={this.props.comment} cityId={this.props.cityId} refreshComments={this.props.refreshComments}/> : null}
                 {this.state.deleteConfirm ? <DeleteConfirm deleteComment={this.deleteComment} cancelDelete={this.toggleDelete}/> : null}
                 <hr />
             </div>
