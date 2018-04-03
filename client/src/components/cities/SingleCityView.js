@@ -22,6 +22,7 @@ class SingleCityView extends Component {
   componentDidMount() {
     this.getSingleCity();
   }
+
   getSingleCity = async () => {
     const cityId = this.props.match.params.id;
     const response = await axios.get(`/api/cities/${cityId}`);
@@ -31,6 +32,7 @@ class SingleCityView extends Component {
     });
     console.log(this.state.comments);
   };
+
   deleteCity = async () => {
     await axios.delete(`/api/cities/${this.state.city.id}`);
   };
@@ -50,20 +52,20 @@ class SingleCityView extends Component {
   render() {
     return (
       <StyleWrapper>
-          <h1>Welcome to {this.state.city.name}!</h1>
-          <ImageWrapper>
-            <img src={this.state.city.photo_url} />
-          </ImageWrapper>
-          <DescriptionWrapper>
-            <p>{this.state.city.description}</p>
-          </DescriptionWrapper>
-          <CommentWrapper>
-            <CommentList
-              cityId={this.state.city.id}
-              getSingleCity={this.getSingleCity}
-              comments={this.state.comments}
-            />
-          </CommentWrapper>
+        <h1>Welcome to {this.state.city.name}!</h1>
+        <ImageWrapper>
+          <img src={this.state.city.photo_url} />
+        </ImageWrapper>
+        <DescriptionWrapper>
+          <p>{this.state.city.description}</p>
+        </DescriptionWrapper>
+        <CommentWrapper>
+          <CommentList
+            cityId={this.state.city.id}
+            getSingleCity={this.getSingleCity}
+            comments={this.state.comments}
+          />
+        </CommentWrapper>
       </StyleWrapper>
     );
   }

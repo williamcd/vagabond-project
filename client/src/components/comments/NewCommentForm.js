@@ -1,31 +1,41 @@
-import React, { Component } from 'react';
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 
 class NewCommentForm extends Component {
-    render() {
-        return (
-            <div>
-                <FormStyle>
-                <form id="form"
-                onSubmit={this.props.createComment}
-                className="topBefore">
-                    <input onChange={this.props.handleChange} 
-                    placeholder="Title" 
-                    type="text" 
-                    name="title" 
-                    value={this.props.newComment.title} />
-                    <textarea 
-                    onChange={this.props.handleChange} 
-                    placeholder="Content" 
-                    type="text" 
-                    name="content" 
-                    value={this.props.newComment.content} />
-                    <input id="submit" type="submit" value="Add Comment" />
-                </form>
-                </FormStyle>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <FormStyle>
+          <form
+            id="form"
+            onSubmit={this.props.createComment}
+            className="topBefore"
+          >
+            <input
+              onChange={this.props.handleChange}
+              placeholder="Title"
+              type="text"
+              name="title"
+              value={this.props.newComment.title}
+              maxLength="200"
+              required
+            />
+
+            <textarea
+              onChange={this.props.handleChange}
+              placeholder="Content"
+              type="text"
+              name="content"
+              value={this.props.newComment.content}
+              maxLength="1000"
+              required
+            />
+            <input id="submit" type="submit" value="Add" />
+          </form>
+        </FormStyle>
+      </div>
+    );
+  }
 }
 
 export default NewCommentForm;
@@ -36,7 +46,7 @@ const FormStyle = styled.div`
   input::-webkit-input-placeholder,
   textarea::-webkit-input-placeholder {
     color: black;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:focus::-webkit-input-placeholder,
@@ -47,7 +57,7 @@ const FormStyle = styled.div`
   input::-moz-placeholder,
   textarea::-moz-placeholder {
     color: black;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:focus::-moz-placeholder,
@@ -58,7 +68,7 @@ const FormStyle = styled.div`
   input::placeholder,
   textarea::placeholder {
     color: black;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:focus::placeholder,
@@ -69,7 +79,7 @@ const FormStyle = styled.div`
   input::-ms-placeholder,
   textarea::-ms-placeholder {
     color: black;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:focus::-ms-placeholder,
@@ -82,7 +92,7 @@ const FormStyle = styled.div`
   input:hover::-webkit-input-placeholder,
   textarea:hover::-webkit-input-placeholder {
     color: #e2dedb;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:hover:focus::-webkit-input-placeholder,
@@ -93,7 +103,7 @@ const FormStyle = styled.div`
   input:hover::-moz-placeholder,
   textarea:hover::-moz-placeholder {
     color: #e2dedb;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:hover:focus::-moz-placeholder,
@@ -104,7 +114,7 @@ const FormStyle = styled.div`
   input:hover::placeholder,
   textarea:hover::placeholder {
     color: #e2dedb;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:hover:focus::placeholder,
@@ -115,7 +125,7 @@ const FormStyle = styled.div`
   input:hover::placeholder,
   textarea:hover::placeholder {
     color: #e2dedb;
-    font-size: 0.875em;
+    font-size: 0.7em;
   }
 
   input:hover:focus::-ms-placeholder,
@@ -133,7 +143,7 @@ const FormStyle = styled.div`
   header {
     position: relative;
     margin: 100px 0 25px 0;
-    font-size: 2.3em;
+    font-size: 1em;
     color: white;
     text-align: center;
     letter-spacing: 7px;
@@ -142,14 +152,14 @@ const FormStyle = styled.div`
 
   #form {
     position: relative;
-    width: 500px;
+    width: 230px;
     margin: 50px auto 100px auto;
   }
 
   input {
     font-family: "Lato", sans-serif;
-    font-size: 0.875em;
-    width: 470px;
+    font-size: 0.7em;
+    width: 80%;
     height: 50px;
     padding: 0px 15px 0px 15px;
 
@@ -172,7 +182,7 @@ const FormStyle = styled.div`
   }
 
   textarea {
-    width: 470px;
+    width: 80%;
     max-width: 470px;
     height: 110px;
     max-height: 110px;
@@ -183,7 +193,7 @@ const FormStyle = styled.div`
 
     color: #726659;
     font-family: "Lato", sans-serif;
-    font-size: 0.875em;
+    font-size: 0.7em;
 
     border: solid 1px #b3aca7;
 
@@ -199,13 +209,13 @@ const FormStyle = styled.div`
   }
 
   #submit {
-    width: 502px;
+    width: 40%;
 
     padding: 0;
     margin: -5px 0px 0px 0px;
 
     font-family: "Lato", sans-serif;
-    font-size: 0.875em;
+    font-size: 0.7em;
     color: black;
 
     outline: none;
