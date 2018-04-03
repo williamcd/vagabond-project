@@ -44,7 +44,7 @@ class EditCommentForm extends Component {
                             placeholder="title"
                             name="title"
                             value={this.state.comment.title}
-                            maxlength="200"
+                            maxLength="200"
                             required
                         />
                         <textarea

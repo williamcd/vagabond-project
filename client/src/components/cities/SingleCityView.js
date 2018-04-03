@@ -138,7 +138,7 @@ const CommentWrapper = styled.div`
   background-color: white;
   text-align: center;
   border-radius: 15px;
-  width: 60%;
+  width: 70%;
   margin: 20px;
   font-family: "Nanum Pen Script", cursive;
   font-size: 24px;

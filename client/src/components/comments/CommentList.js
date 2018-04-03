@@ -39,7 +39,7 @@ class CommentList extends Component {
   render() {
     return (
       <div>
-        {this.props.comments.map(comment => {
+        {this.props.comments.slice(0).reverse().map(comment => {
           return (
             <Comment
               comment={comment}
