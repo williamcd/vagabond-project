@@ -15,6 +15,7 @@ class EditCommentForm extends Component {
     componentDidMount() {
         this.setState({ comment: this.props.comment })
     }
+    //api patch and comment refresh
     saveComment = async event => {
         event.preventDefault();
         const cityId = this.props.cityId;
@@ -44,6 +45,7 @@ class EditCommentForm extends Component {
                             placeholder="title"
                             name="title"
                             value={this.state.comment.title}
+                            //validations
                             maxLength="200"
                             required
                         />
@@ -53,6 +55,7 @@ class EditCommentForm extends Component {
                             placeholder="content"
                             name="content"
                             value={this.state.comment.content}
+                            //validations
                             maxLength="1000"
                             required
                         />
