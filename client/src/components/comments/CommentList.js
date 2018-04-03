@@ -28,6 +28,7 @@ class CommentList extends Component {
     }})
     this.props.getSingleCity();
   };
+  
 
   handleChange = event => {
     const newComment = { ...this.state.newComment };
