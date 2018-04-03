@@ -11,42 +11,25 @@ class SingleCityView extends Component {
   state = {
     city: {},
     comments: [],
-    showEditCity: false,
     showCreateCommentForm: false,
     newComment: {
       title: "",
       content: ""
     }
   };
-
+  //on mount, get city data
   componentDidMount() {
     this.getSingleCity();
   }
-
+  //axios get for specific city
   getSingleCity = async () => {
     const cityId = this.props.match.params.id;
     const response = await axios.get(`/api/cities/${cityId}`);
+    //set state to response data
     this.setState({
       city: response.data.city,
       comments: response.data.comments
     });
-    console.log(this.state.comments);
-  };
-
-  deleteCity = async () => {
-    await axios.delete(`/api/cities/${this.state.city.id}`);
-  };
-
-  toggleShowEdit = () => {
-    this.setState({ showEditCity: !this.state.showEditCity });
-  };
-  handleSubmit = async event => {
-    event.preventDefault();
-    const cityId = this.state.city.id;
-    const cityUpdate = { ...this.state.city };
-    await axios.patch(`/api/cities/${cityId}`, cityUpdate);
-    this.toggleShowEdit();
-    await this.getSingleCity();
   };
 
   render() {

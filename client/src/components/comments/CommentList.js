@@ -60,7 +60,7 @@ class CommentList extends Component {
         {/* loops through comments and creates a view for each */}
         {this.props.comments.slice(0).reverse().map(comment => {
           return (
-            <Comment
+            <Comment key={comment.id}
               comment={comment}
               cityId={this.props.cityId}
               refreshComments={this.props.getSingleCity}

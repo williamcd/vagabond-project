@@ -5,20 +5,13 @@ import { Link } from "react-router-dom";
 
 class CityList extends Component {
   state = {
-    cities: [],
-    newCityFormOpen: false,
-    newCity: {
-      name: "",
-      description: "",
-      photo_url: ""
-    },
-    error: ""
+    cities: []
   };
-
+  //on mount, get cities
   componentDidMount() {
     this.getAllCities();
   }
-
+  //axios get of all cities
   getAllCities = async () => {
     try {
       const res = await axios.get("/api/cities");
@@ -29,16 +22,11 @@ class CityList extends Component {
     }
   };
 
-  handleChange = event => {
-    const newCity = { ...this.state.newCity };
-    newCity[event.target.name] = event.target.value;
-    this.setState({ newCity });
-  };
-
   render() {
     return (
       <PageWrapper>
         <ContentWrapper>
+          {/* map through cities and display data */}
           {this.state.cities.map(city => {
             return (
               <div key={city.id}>
