@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import EditCommentForm from "./EditCommentForm";
 import NewCommentForm from "./NewCommentForm";
 import Comment from "./Comment";
 
@@ -82,8 +80,4 @@ const ButtonWrapper = styled.div`
   button {
     margin: 30px;
   }
-`;
-
-const LinkWrapper = styled.div`
-  text-decoration: none;
 `;

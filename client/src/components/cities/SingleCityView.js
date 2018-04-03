@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-import Header from "../static-components/Header";
-import Footer from "../static-components/Footer";
-import NewCommentForm from "../comments/NewCommentForm";
 import CommentList from "../comments/CommentList";
 
 class SingleCityView extends Component {
@@ -37,7 +34,7 @@ class SingleCityView extends Component {
       <StyleWrapper>
         <h1>Welcome to {this.state.city.name}!</h1>
         <ImageWrapper>
-          <img src={this.state.city.photo_url} />
+          <img src={this.state.city.photo_url} alt={this.state.city.name}/>
         </ImageWrapper>
         <DescriptionWrapper>
           <p>{this.state.city.description}</p>
@@ -100,16 +97,6 @@ const DescriptionWrapper = styled.div`
   padding: 15px;
   align-items: center;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-`;
-
-const ButtonWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  button {
-    margin: 30px;
-  }
 `;
 
 const ImageWrapper = styled.div`
