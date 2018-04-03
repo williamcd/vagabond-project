@@ -4,10 +4,10 @@ import { injectGlobal } from "styled-components";
 
 import CityList from './components/cities/CityList'
 import SingleCityView from './components/cities/SingleCityView'
-import SingleCommentView from './components/comments/SingleCommentView'
 import Header from "./components/static-components/Header";
 import Footer from "./components/static-components/Footer";
 
+// import Google Fonts plus button styling and make them global
 injectGlobal`
 @import url('https://fonts.googleapis.com/css?family=Sarina');
 @import url('https://fonts.googleapis.com/css?family=Diplomata+SC');
