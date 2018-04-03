@@ -13,28 +13,29 @@ class CommentList extends Component {
     },
     toggleEditForm: false
   };
-
+  //posts new comment with newComment data
   createComment = async event => {
     event.preventDefault();
     const response = await axios.post(
       `/api/cities/${this.props.cityId}/comments`,
       this.state.newComment
     );
+    //returns state to null
     this.setState({ newComment: {
       title: '',
       content: ''
     }})
+    //refreshes comments
     this.props.getSingleCity();
   };
-  
-
+  //changes newComment data
   handleChange = event => {
     const newComment = { ...this.state.newComment };
     newComment[event.target.name] = event.target.value;
     this.setState({ newComment });
     console.log(this.state.newComment);
   };
-
+  //displays createComment form
   toggleCommentForm = () => {
     this.setState({ showCreateCommentForm: !this.state.showCreateCommentForm });
   };
@@ -54,6 +55,7 @@ class CommentList extends Component {
             />
           ) : null}
         </ButtonWrapper>
+        {/* loops through comments and creates a view for each */}
         {this.props.comments.slice(0).reverse().map(comment => {
           return (
             <Comment

@@ -17,6 +17,7 @@ class NewCommentForm extends Component {
               type="text"
               name="title"
               value={this.props.newComment.title}
+              //validations
               maxLength="200"
               required
             />
@@ -27,6 +28,7 @@ class NewCommentForm extends Component {
               type="text"
               name="content"
               value={this.props.newComment.content}
+              //validations
               maxLength="1000"
               required
             />
