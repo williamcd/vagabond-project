@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import DeleteConfirm from "./DeleteConfirm";
 import axios from 'axios'
 
 class EditCommentForm extends Component {
